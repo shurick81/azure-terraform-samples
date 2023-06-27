@@ -31,36 +31,36 @@ docker run --rm -v $(pwd):/workplace -w /workplace \
 
 Run in cloud shell
 
-```
+```bash
 #iKey="bc1e1cdf-d980-4c08-9459-0c1e2b59cab4";
 iKey="2209a5a6-c7b8-4ab7-b4a7-291eead652a3";
 #iKey="13b5e5db-930d-465f-82a9-09df7db3a81b";
 #iKey="f0fd3b09-626f-441d-be9b-32f63a4f4b5b";
 timeStamp=$(date -u +'%Y-%m-%d %H:%M:%S.%s%Z');
 data='{
-   "name": "Microsoft.ApplicationInsights.Event",
-   "time": "'$timeStamp'",
-   "iKey": "'$iKey'",
-   "tags":{
-      "ai.operation.name":  "POST traveler_updated",
-      "ai.operation.id": "1328d445f4a63570e839095b1c6e71ac",
-      "ai.operation.parentId": "c40f97f19b2c1eb9",
-      "ai.cloud.role": "ScheduledJobs",
-      "ai.cloud.roleInstance": "virtualServer01"
-   },
-   "data": {
-      "baseType": "MessageData",
-      "baseData": {
-         "ver": 2,
-         "message": "Simple Trace Log Message",
-         "severityLevel": 2,
-         "properties": {
-            "x": "value x",
-            "y": "value y",
-            "z": "value z"
-         }
+  "name": "Microsoft.ApplicationInsights.Event",
+  "time": "'$timeStamp'",
+  "iKey": "'$iKey'",
+  "tags":{
+    "ai.operation.name":  "POST traveler_updated",
+    "ai.operation.id": "1328d445f4a63570e839095b1c6e71ac",
+    "ai.operation.parentId": "c40f97f19b2c1eb9",
+    "ai.cloud.role": "ScheduledJobs",
+    "ai.cloud.roleInstance": "virtualServer01"
+  },
+  "data": {
+    "baseType": "MessageData",
+    "baseData": {
+      "ver": 2,
+      "message": "Simple Trace Log Message",
+      "severityLevel": 2,
+      "properties": {
+        "x": "value x",
+        "y": "value y",
+        "z": "value z"
       }
-   }
+    }
+  }
 }';
 curl -d "$data" https://global.in.ai.monitor.azure.com/v2/track
 ```
@@ -68,5 +68,45 @@ curl -d "$data" https://global.in.ai.monitor.azure.com/v2/track
 kusto:
 ```
 traces |
-extend xDimension = tostring(customDimensions["x"])
+  extend xDimension = tostring(customDimensions["x"])
+```
+
+```bash
+iKey="1b52e915-1e2c-4737-9673-e2f21438fed1";
+timeStamp=$(date -u +'%Y-%m-%dT%H:%M:%S.%sZ');
+data='{
+  "name": "MetricData",
+  "time": "'$timeStamp'",
+  "iKey": "'$iKey'",
+  "tags":{
+    "ai.operation.name":  "pdfAnalytics",
+    "ai.operation.id": "'$timeStamp'",
+    "ai.operation.parentId": "c40f97f19b2c1eb9",
+    "ai.cloud.role": "jumpserver",
+    "ai.cloud.roleInstance": "jumpserver000"
+  },
+  "data": {
+    "baseType": "MetricData",
+    "baseData": {
+      "metrics": [
+        {
+          "name": "documentSize",
+          "value": 349875
+        }
+      ],
+      "properties": {
+        "documentNameHash": "29390w9e8rwy",
+        "documentType": "pdf",
+        "customerEnvironment": "t203495"
+      }
+    }
+  }
+}';
+curl -d "$data" https://westeurope-5.in.applicationinsights.azure.com/v2/track
+```
+
+kusto:
+```
+customMetrics |
+  extend documentType = tostring(customDimensions["documentType"])
 ```
