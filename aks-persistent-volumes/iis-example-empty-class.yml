@@ -72,7 +72,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   azureFile:
-    secretNamespace: default
+    secretNamespace: empty-class-ns
     secretName: azure-secret
     shareName: common00
     readOnly: false
