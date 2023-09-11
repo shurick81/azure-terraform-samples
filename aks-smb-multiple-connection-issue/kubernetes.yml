@@ -1,0 +1,549 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory00
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory00
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory00
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common00\directory00
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-00-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory00
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory01
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory01
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory01
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common00\directory01
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-01-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory01
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory02
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory02
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory02
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common00\directory02
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-02-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory02
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory03
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory03
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory03
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common00\directory03
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-03-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory03
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory04
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory04
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory04
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common00\directory04
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-04-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory04
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory05
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory05
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory05
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common00\directory05
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-05-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory05
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory06
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory06
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory06
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common01
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-06-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory06
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: csi-file-share-instance{{INSTANCE_ID}}-directory07
+  labels:
+    usage: csi-file-share-instance{{INSTANCE_ID}}-directory07
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: false
+    volumeHandle: csi-file-share-instance{{INSTANCE_ID}}-directory07
+    volumeAttributes:
+      resourceGroup: aks-smb-issue-common-00
+      shareName: common02
+    nodeStageSecretRef:
+      name: azure-secret
+      namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=0
+  - gid=0
+  - mfsymlinks
+  - cache=strict
+  - nosharesock
+  - nobrl
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-file-share-07-claim
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: "azurefile-csi"
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    # To make sure we match the claim with the exact volume, match the label
+    matchLabels:
+      usage: csi-file-share-instance{{INSTANCE_ID}}-directory07
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iis-2022-component-00
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  labels:
+    app: iis-2022-component-00
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: iis-2022-component-00
+      labels:
+        app: iis-2022-component-00
+    spec:
+      nodeSelector:
+        common2022: "yes"
+      volumes:
+      - name: csi-file-share-00
+        persistentVolumeClaim:
+          claimName: csi-file-share-00-claim
+      - name: csi-file-share-01
+        persistentVolumeClaim:
+          claimName: csi-file-share-01-claim
+      - name: csi-file-share-02
+        persistentVolumeClaim:
+          claimName: csi-file-share-02-claim
+      - name: csi-file-share-03
+        persistentVolumeClaim:
+          claimName: csi-file-share-03-claim
+      - name: csi-file-share-06
+        persistentVolumeClaim:
+          claimName: csi-file-share-06-claim
+      - name: csi-file-share-07
+        persistentVolumeClaim:
+          claimName: csi-file-share-07-claim
+      containers:
+      - name: iis
+        image: mcr.microsoft.com/windows/servercore/iis:20230808-windowsservercore-ltsc2022
+        command:
+        - "powershell.exe"
+        - "-Command"
+        - "while (1) { Add-Content -Encoding Ascii C:\\inetpub\\wwwroot\\directory00\\subdirectory\\data{{INSTANCE_ID}}0000.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\inetpub\\wwwroot\\directory01\\subdirectory\\data{{INSTANCE_ID}}0001.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\inetpub\\wwwroot\\directory02\\subdirectory\\data{{INSTANCE_ID}}0002.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\inetpub\\wwwroot\\directory03\\subdirectory\\data{{INSTANCE_ID}}0003.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\inetpub\\wwwroot\\subdirectory\\directory06\\data{{INSTANCE_ID}}0006.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\directory07\\data{{INSTANCE_ID}}0007.txt $(Get-Date -Format u); sleep 1}"
+        resources:
+          limits:
+            cpu: 1
+            memory: 800Mi
+          requests:
+            cpu: .1
+            memory: 300Mi
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: csi-file-share-00
+          mountPath: /inetpub/wwwroot/directory00/subdirectory
+        - name: csi-file-share-01
+          mountPath: /inetpub/wwwroot/directory01/subdirectory
+        - name: csi-file-share-02
+          mountPath: /inetpub/wwwroot/directory02/subdirectory
+        - name: csi-file-share-03
+          mountPath: /inetpub/wwwroot/directory03/subdirectory
+        - name: csi-file-share-06
+          mountPath: /inetpub/wwwroot/subdirectory/directory06
+        - name: csi-file-share-07
+          mountPath: /directory07
+  selector:
+    matchLabels:
+      app: iis-2022-component-00
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iis-20022-component-00
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: iis-2022-component-00
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iis-2022-component-01
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+  labels:
+    app: iis-2022-component-01
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: iis-2022-component-01
+      labels:
+        app: iis-2022-component-01
+    spec:
+      nodeSelector:
+        common2022: "yes"
+      volumes:
+      - name: csi-file-share-04
+        persistentVolumeClaim:
+          claimName: csi-file-share-04-claim
+      - name: csi-file-share-05
+        persistentVolumeClaim:
+          claimName: csi-file-share-05-claim
+      - name: csi-file-share-07
+        persistentVolumeClaim:
+          claimName: csi-file-share-07-claim
+      containers:
+      - name: iis
+        image: mcr.microsoft.com/windows/servercore/iis:20230808-windowsservercore-ltsc2022
+        command:
+        - "powershell.exe"
+        - "-Command"
+        - "while (1) { Add-Content -Encoding Ascii C:\\inetpub\\wwwroot\\directory04\\subdirectory\\data{{INSTANCE_ID}}0104.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\directory05\\subdirectory\\data{{INSTANCE_ID}}0105.txt $(Get-Date -Format u); Add-Content -Encoding Ascii C:\\directory07\\data{{INSTANCE_ID}}0107.txt $(Get-Date -Format u); sleep 1}"
+        resources:
+          limits:
+            cpu: 1
+            memory: 800Mi
+          requests:
+            cpu: .1
+            memory: 300Mi
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: csi-file-share-04
+          mountPath: /inetpub/wwwroot/directory04/subdirectory
+        - name: csi-file-share-05
+          mountPath: /directory05/subdirectory
+        - name: csi-file-share-07
+          mountPath: /directory07
+  selector:
+    matchLabels:
+      app: iis-2022-component-01
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iis-20022-component-01
+  namespace: csi-file-share-instance{{INSTANCE_ID}}-ns
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: iis-2022-component-01
