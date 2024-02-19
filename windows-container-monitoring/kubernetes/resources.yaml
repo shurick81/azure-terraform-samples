@@ -1,0 +1,55 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: monitoring-test-00
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iis-2022-component-00
+  namespace: monitoring-test-00
+  labels:
+    app: iis-2022-component-00
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: iis-2022-component-00
+      labels:
+        app: iis-2022-component-00
+    spec:
+      nodeSelector:
+        common2022: "yes"
+      containers:
+      - name: iis
+        image: mcr.microsoft.com/windows/servercore/iis:20240213-windowsservercore-ltsc2022
+        command:
+        - powershell.exe
+        - -command
+        - "echo '<html><body><br/><br/><marquee><H1>Hello AKS!!!<H1><marquee></body><html>' > C:\\inetpub\\wwwroot\\iisstart.htm; New-Item C:\\LogMonitor -Type Directory; wget -uri https://github.com/microsoft/windows-container-tools/releases/download/v1.1/LogMonitor.exe -outfile C:\\LogMonitor\\LogMonitor.exe; wget -uri https://raw.githubusercontent.com/microsoft/windows-container-tools/main/LogMonitor/src/LogMonitor/sample-config-files/IIS/LogMonitorConfig.json -outfile C:\\LogMonitor\\LogMonitorConfig.json; C:\\LogMonitor\\LogMonitor.exe C:\\ServiceMonitor.exe 'w3svc';"
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 6000Mi
+          requests:
+            cpu: 100m
+            memory: 1000Mi
+        ports:
+        - containerPort: 80
+
+  selector:
+    matchLabels:
+      app: iis-2022-component-00
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iis-20022-component-00
+  namespace: monitoring-test-00
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: iis-2022-component-00
